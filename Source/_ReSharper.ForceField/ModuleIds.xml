@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="E7D03877-CAA4-4BBC-9B94-C22D4E30A55A" ModuleId="ForceField.Core" />
+  <Module PersistentId="8AFA07E2-EF6B-4FEE-A29C-2C4FC1B170BE" ModuleId="ForceField.AutofacIntegration" />
+  <Module PersistentId="8CFCB8AC-1E01-4F52-9C1F-D1B968C15AEF" ModuleId="ForceField.UnityIntegration" />
+  <Module PersistentId="5A6593C2-4A2C-4BFC-AEA5-33E75816E0A4" ModuleId="ForceField.Examples" />
+  <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
+</Modules>
