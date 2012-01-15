@@ -6,24 +6,26 @@ namespace ForceField.Core.Advices
 {
     public class AppliedAdvice
     {
-        private readonly IPointcut _applicability;
+        private readonly IPointcut _pointcut;
 
-        public AppliedAdvice(IAdvice advice, IPointcut applicability)
+        public AppliedAdvice(IAdvice advice, IPointcut pointcut)
         {
+            Guard.ArgumentNotNull(() => advice, () => pointcut);
+
             Advice = advice;
-            _applicability = applicability;
+            _pointcut = pointcut;
         }
 
         public IAdvice Advice { get; private set; }
 
         public bool IsApplicableFor(Type type)
         {
-            return _applicability.IsApplicableFor(type);
+            return _pointcut.IsApplicableFor(type);
         }
 
         public bool IsApplicableFor(IInvocation invocation)
         {
-            return _applicability.IsApplicableFor(invocation);
+            return _pointcut.IsApplicableFor(invocation);
         }
     }
 }

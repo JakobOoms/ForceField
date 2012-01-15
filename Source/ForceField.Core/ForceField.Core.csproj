@@ -74,6 +74,7 @@
     <Compile Include="Generator\GeneratorResult.cs" />
     <Compile Include="Generator\HostingContainer.cs" />
     <Compile Include="Generator\ProxyGenerator.cs" />
+    <Compile Include="Guard.cs" />
     <Compile Include="Invocation\BaseInvocation.cs" />
     <Compile Include="Invocation\ChainedInvocation.cs" />
     <Compile Include="Invocation\FunctionInvocation.cs" />

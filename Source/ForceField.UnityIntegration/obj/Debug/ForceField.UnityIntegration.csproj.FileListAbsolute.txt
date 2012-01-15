@@ -12,3 +12,17 @@ C:\_Git\Projects\ForceField\Source\ForceField\ForceField.UnityIntegration\bin\De
 C:\_Git\Projects\ForceField\Source\ForceField\ForceField.UnityIntegration\obj\Debug\ResolveAssemblyReference.cache
 C:\_Git\Projects\ForceField\Source\ForceField\ForceField.UnityIntegration\obj\Debug\ForceField.UnityIntegration.dll
 C:\_Git\Projects\ForceField\Source\ForceField\ForceField.UnityIntegration\obj\Debug\ForceField.UnityIntegration.pdb
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\obj\Debug\ResolveAssemblyReference.cache
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\ForceField.UnityIntegration.dll
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\ForceField.UnityIntegration.pdb
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\ForceField.Core.dll
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\Microsoft.Practices.Unity.dll
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\ForceField.Core.pdb
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\Microsoft.Practices.Unity.xml
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\obj\Debug\ForceField.UnityIntegration.dll
+C:\_Git\Projects\ForceField\Source\ForceField.UnityIntegration\obj\Debug\ForceField.UnityIntegration.pdb

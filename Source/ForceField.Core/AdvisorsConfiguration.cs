@@ -10,7 +10,7 @@ namespace ForceField.Core
     //TODO: find better name, is the 'Advisor' name is not used anymore (this is now an 'AppliedAdvice')
     public abstract class AdvisorsConfiguration
     {
-        private readonly List<AppliedAdvice> _appliedAdvices;
+        protected readonly List<AppliedAdvice> _appliedAdvices;
         private readonly HashSet<Type> _blockedTypes;
 
         protected AdvisorsConfiguration()
@@ -60,7 +60,7 @@ namespace ForceField.Core
             _blockedTypes.Add(advice.GetType());
         }
 
-        public abstract T TryResolveAdvice<T>() where T : class;
+        protected abstract T TryResolveAdvice<T>() where T : class;
 
         protected abstract AdvisorsConfiguration Clone();
 

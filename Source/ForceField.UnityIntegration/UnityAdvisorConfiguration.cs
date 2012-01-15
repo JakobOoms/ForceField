@@ -13,7 +13,7 @@ namespace ForceField.UnityIntegration
             _innerContainer = container;
         }
 
-        public override TAdvice TryResolveAdvice<TAdvice>()
+        protected override TAdvice TryResolveAdvice<TAdvice>()
         {
             return _innerContainer.Registrations.Any(registration => registration.RegisteredType == typeof(TAdvice)) ? _innerContainer.Resolve<TAdvice>() : null;
         }

@@ -12,7 +12,7 @@ namespace ForceField.AutofacIntegration
             _container = container;
         }
 
-        public override T TryResolveAdvice<T>() 
+        protected override T TryResolveAdvice<T>()
         {
             return _container.ResolveOptional<T>();
         }

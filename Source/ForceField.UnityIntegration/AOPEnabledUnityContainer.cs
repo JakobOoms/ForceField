@@ -93,7 +93,7 @@ namespace ForceField.UnityIntegration
             _innerContainer.Dispose();
         }
 
-        public T Resolve<T>()
+        public T Resolve<T>() where T : class
         {
             var innerService = _innerContainer.Resolve<T>();
             return ProxyFactory.Create(innerService, Configuration);

@@ -32,26 +32,13 @@ namespace ForceField.Core
             return proxyInstantiator.Create(implementation, strippedConfiguration);
         }
 
-        public static T Create<T>(T implementation, AdvisorsConfiguration configuration)
+        public static T Create<T>(T implementation, AdvisorsConfiguration configuration) where T : class
         {
+            Guard.ArgumentNotNull(() => implementation);
+            Guard.ArgumentNotNull(() => configuration);
+
             var type = typeof(T);
             return (T)Create(type, implementation, configuration);
-            //var typeHasInterestedAdvices = configuration.AppliedAdvices.Any(advice => advice.Applicability.IsApplicableFor(type));
-
-            ////If there are no advices that are applicable for this type, the type should not be decorated and we can easily
-            ////return the original implementation.
-            //if (!typeHasInterestedAdvices)
-            //    return implementation;
-
-            //ProxyInstantiator proxyInstantiator;
-            //if (!Instantiators.TryGetValue(type, out proxyInstantiator))
-            //{
-            //    proxyInstantiator = BuildInstantiator(type);
-            //    Instantiators[type] = proxyInstantiator;
-            //}
-
-            //var strippedConfiguration = configuration.CreateCopyFor(type);
-            //return proxyInstantiator.Create(implementation, strippedConfiguration);
         }
 
         private static IEnumerable<string> GetRequiredAssemblies(Type type)

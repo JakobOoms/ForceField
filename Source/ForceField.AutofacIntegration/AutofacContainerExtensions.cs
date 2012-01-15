@@ -12,7 +12,7 @@ namespace ForceField.AutofacIntegration
             return new WrappedAutofacContainer(innerContainer, configuration);
         }
 
-        public static T Resolve<T>(this IAOPAutofacContainer container)
+        public static T Resolve<T>(this IAOPAutofacContainer container) where T : class
         {
             //cast back to make sure we're not in an infinite recursion.
             var innerService = ((IContainer)container).Resolve<T>();

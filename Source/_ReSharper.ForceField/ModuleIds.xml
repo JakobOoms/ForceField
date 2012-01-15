@@ -4,4 +4,6 @@
   <Module PersistentId="8CFCB8AC-1E01-4F52-9C1F-D1B968C15AEF" ModuleId="ForceField.UnityIntegration" />
   <Module PersistentId="5A6593C2-4A2C-4BFC-AEA5-33E75816E0A4" ModuleId="ForceField.Examples" />
   <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
+  <Module PersistentId="D44354E1-75B7-4EE9-A9BE-FF428D723CCC" ModuleId="ForceField.Core.Tests" />
+  <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib_1" />
 </Modules>
