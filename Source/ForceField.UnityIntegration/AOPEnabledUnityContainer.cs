@@ -16,6 +16,10 @@ namespace ForceField.UnityIntegration
             _configuration = configuration;
             _configuration.SetInnerContainer(this);
             _innerContainer = new UnityContainer();
+         
+            //Register all the advices into the container, so they can be resolved when needed
+            foreach (var adviceType in configuration.GetRegisteredAdvices())
+                _innerContainer.RegisterType(adviceType);
         }
 
         public AdvisorsConfiguration Configuration

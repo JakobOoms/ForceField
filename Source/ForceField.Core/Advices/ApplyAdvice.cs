@@ -8,7 +8,7 @@ namespace ForceField.Core.Advices
     {
         public static IPointcut OnEveryMethod
         {
-            get { return new InlinePointcut(x => true, x => true); }
+            get { return new AlwaysApplyAdvice(); }
         }
 
         public static IPointcut On(Func<Type, bool> adviceOnType)

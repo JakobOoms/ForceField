@@ -1,3 +1,4 @@
+using System.Linq;
 using Autofac;
 using ForceField.Core;
 
@@ -7,7 +8,12 @@ namespace ForceField.AutofacIntegration
     {
         public static IAOPAutofacContainer Build(this ContainerBuilder builder, AutofacAdvisorConfiguration configuration)
         {
+            //Register all advices into the container, so they can be resolved
+            foreach (var adviceType in configuration.GetRegisteredAdvices())
+                builder.RegisterType(adviceType);
+
             var innerContainer = builder.Build();
+            //Inject the builded container so the configuration can resolve the builded advices when needed
             configuration.SetContainer(innerContainer);
             return new WrappedAutofacContainer(innerContainer, configuration);
         }

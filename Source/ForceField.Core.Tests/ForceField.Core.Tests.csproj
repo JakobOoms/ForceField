@@ -71,10 +71,15 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Advices\AppliedAdviceTest.cs" />
     <Compile Include="Advices\EmptyAdviceTest.cs" />
+    <Compile Include="Advices\LazyAdviceTest.cs" />
     <Compile Include="Extensions\TypeExtensionTests.cs" />
     <Compile Include="Generator\ProxyGeneratorTest.cs" />
     <Compile Include="GuardTest.cs" />
+    <Compile Include="Pointcuts\AlwaysApplyAdviceTest.cs" />
+    <Compile Include="Pointcuts\NeverApplyAdviceTest.cs" />
+    <Compile Include="TestObjects\TestInvocation.cs" />
     <Compile Include="TestObjects\ITestInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyFactoryTests.cs" />

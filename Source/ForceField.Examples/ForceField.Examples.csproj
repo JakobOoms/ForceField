@@ -66,6 +66,7 @@
     <Compile Include="CachingInfractructure\CacheConfiguration.cs" />
     <Compile Include="CachingInfractructure\CacheInstruction.cs" />
     <Compile Include="CachingInfractructure\CacheType.cs" />
+    <Compile Include="CachingInfractructure\ExampleOfCacheConfigurationService.cs" />
     <Compile Include="CachingInfractructure\IAcceptInstruction.cs" />
     <Compile Include="CachingInfractructure\ICacheConfigurationService.cs" />
     <Compile Include="CachingInfractructure\IInvalidateInstruction.cs" />

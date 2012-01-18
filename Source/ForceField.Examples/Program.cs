@@ -13,27 +13,6 @@ namespace ForceField.Examples
 {
     class Program
     {
-
-        public class CacheConfigurationService : ICacheConfigurationService
-        {
-            public CacheConfiguration BuildConfiguration()
-            {
-                var fixedForOneHour = new CacheInstruction(CacheType.Fixed, TimeSpan.FromHours(1));
-                var cacheConfig = new CacheConfiguration();
-                cacheConfig.ApplyCachingOn(x => x.DeclaringType.Name.EndsWith("Repository"), fixedForOneHour)
-                    .InvalidateOn(x => x.Name.StartsWith("Save"))
-                    .InvalidateOn(x => x.Name.StartsWith("Delete"))
-                    .InvalidateOn(x => x.Name.StartsWith("Update"));
-
-                //apply exceptions
-                //cacheConfig
-                //    .ExceptFor<IPersonRepository>(x => x.GetByName(null))
-                //    .InvalidateOn<IPersonRepository>(x => x.Save(null));
-                return cacheConfig;
-            }
-        }
-
-
         static void Main(string[] args)
         {
             TestAutofacIntegration();
@@ -43,18 +22,15 @@ namespace ForceField.Examples
         private static void TestUnityIntegration()
         {
             var unityAdvisorConfiguration = new UnityAdvisorConfiguration();
-            unityAdvisorConfiguration.AddAdvice<CachingAdvice>(new AlwaysApplyAdvice());
+            unityAdvisorConfiguration.AddAdvice<CachingAdvice>(ApplyAdvice.OnEveryMethod);
             unityAdvisorConfiguration.AddAdvice<ExceptionHandlingAdvice>(new ApplyAdviceOnAllRepositories());
             unityAdvisorConfiguration.AddAdvice<LoggerAdvice>(new ApplyAdviceOnAllRepositories());
             unityAdvisorConfiguration.AddAdvice<EmptyAdvice>(ApplyAdvice.OnEveryMethod);
             var unity = new AOPEnabledUnityContainer(unityAdvisorConfiguration);
-            unity.RegisterType<LoggerAdvice>();
-            unity.RegisterType<CachingAdvice>();
-            unity.RegisterType<ExceptionHandlingAdvice>();
             unity.RegisterType<ICacheProvider, RamCacheProvider>();
             unity.RegisterType<ILoggingService, LoggingService>();
             unity.RegisterType<IOtherService, OtherService>();
-            unity.RegisterType<ICacheConfigurationService, CacheConfigurationService>();
+            unity.RegisterType<ICacheConfigurationService, ExampleOfCacheConfigurationService>();
             unity.RegisterType<IPersonRepository, PersonRepository>();
 
 
@@ -76,10 +52,8 @@ namespace ForceField.Examples
             advisorConfiguration.AddAdvice<EmptyAdvice>(ApplyAdvice.OnEveryMethod);
 
             var builder = new ContainerBuilder();
-            builder.Register(c => new LoggerAdvice(c.Resolve<ILoggingService>()));
             builder.Register(c => new RamCacheProvider()).As<ICacheProvider>().SingleInstance();
-            builder.Register(c => new CacheConfigurationService()).As<ICacheConfigurationService>().SingleInstance();
-            builder.Register(c => new CachingAdvice(c.Resolve<ICacheProvider>(), c.Resolve<ICacheConfigurationService>()));
+            builder.Register(c => new ExampleOfCacheConfigurationService()).As<ICacheConfigurationService>().SingleInstance();
             builder.Register(c => new ExceptionHandlingAdvice(c.Resolve<ILoggingService>()));
             builder.Register(c => new LoggingService()).As<ILoggingService>();
             builder.Register(c => new OtherService()).As<IOtherService>();

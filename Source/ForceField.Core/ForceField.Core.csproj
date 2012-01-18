@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Advices\AppliedAdvice.cs" />
     <Compile Include="Advices\ApplyAdvice.cs" />
+    <Compile Include="Advices\CannotInstantiateAdviceException.cs" />
     <Compile Include="Advices\EmptyAdvice.cs" />
     <Compile Include="Advices\IAdvice.cs" />
     <Compile Include="Advices\LazyAdvice.cs" />

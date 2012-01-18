@@ -36,7 +36,7 @@ namespace ForceField.Core
         /// <returns></returns>
         public bool IsBlockedType(Type type)
         {
-            return _blockedTypes.Contains(type);// type.GetInterface(typeof(IAdvice).FullName) != null;
+            return _blockedTypes.Contains(type);
         }
 
         public void AddAdvice<TAdvice>(IPointcut pointcut)
@@ -49,7 +49,7 @@ namespace ForceField.Core
             //LazyAdvice: at the moment of registering the advices, the IOC container itself might not be build up completely. 
             //The LazyAdvice allows us to delay the creation of the required advice untill the moment
             //that the IOC container is fully set up.
-            var advice = new LazyAdvice<TAdvice>(() => TryResolveAdvice<TAdvice>() ?? Activator.CreateInstance<TAdvice>());
+            var advice = new LazyAdvice<TAdvice>(TryResolveAdvice<TAdvice>);
             AddAdvice(advice, pointcut);
             _blockedTypes.Add(typeof(TAdvice));
         }
@@ -61,7 +61,6 @@ namespace ForceField.Core
         }
 
         protected abstract T TryResolveAdvice<T>() where T : class;
-
         protected abstract AdvisorsConfiguration Clone();
 
         public AdvisorsConfiguration CreateCopyFor(Type targetType)
@@ -70,6 +69,21 @@ namespace ForceField.Core
             var advicesToCopy = _appliedAdvices.Where(appliedAdvice => appliedAdvice.IsApplicableFor(targetType));
             copy._appliedAdvices.AddRange(advicesToCopy);
             return copy;
+        }
+
+        public IEnumerable<Type> GetRegisteredAdvices()
+        {
+            return _appliedAdvices.Select(appliedAdvice => GetNonLazyType(appliedAdvice.Advice));
+        }
+
+        private Type GetNonLazyType(IAdvice advice)
+        {
+            var type = advice.GetType();
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(LazyAdvice<>))
+            {
+                return type.GetGenericArguments()[0];
+            }
+            return type;
         }
     }
 }

@@ -7,12 +7,13 @@ namespace ForceField.Core.Advices
     /// <summary>
     /// An advice that delegates to another advice which is instantiated on the moment of invocation.
     /// </summary>
-    internal class LazyAdvice<TInnerAdvice> : IAdvice where TInnerAdvice : IAdvice
+    internal class LazyAdvice<TInnerAdvice> : IAdvice where TInnerAdvice : class, IAdvice
     {
         private readonly Func<TInnerAdvice> _createInnerAdvice;
 
         public LazyAdvice(Func<TInnerAdvice> createInnerAdvice)
         {
+            Guard.ArgumentNotNull(() => createInnerAdvice);
             _createInnerAdvice = createInnerAdvice;
         }
 
@@ -20,6 +21,10 @@ namespace ForceField.Core.Advices
         public void ApplyAdvice(IInvocation invocation)
         {
             var innerAdvice = _createInnerAdvice();
+            if (innerAdvice == null)
+            {
+                throw new CannotInstantiateAdviceException(typeof(TInnerAdvice));
+            }
             innerAdvice.ApplyAdvice(invocation);
         }
     }
