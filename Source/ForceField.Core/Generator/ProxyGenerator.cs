@@ -9,19 +9,6 @@ namespace ForceField.Core.Generator
 {
     internal class ProxyGenerator
     {
-        private class UniqueMethods : IEqualityComparer<MethodInfo>
-        {
-            public bool Equals(MethodInfo x, MethodInfo y)
-            {
-                return x.GetUniqueMethodName() == y.GetUniqueMethodName();
-            }
-
-            public int GetHashCode(MethodInfo obj)
-            {
-                return obj.GetUniqueMethodName().GetHashCode();
-            }
-        }
-
         private string ReturnSignature(Type type, MethodInfo method)
         {
             return method.ReturnType.IsVoid()
@@ -41,11 +28,9 @@ namespace ForceField.Core.Generator
 
         private IEnumerable<MethodInfo> GetPublicMethodsFor(Type type)
         {
-            //TODO: clean up + is custom comparer (still) needed?
             return type.GetMethods()
                        .Union(type.GetInterfaces().SelectMany(x => x.GetMethods()))
-                       .Where(x => x.IsPublic && !typeof(object).GetMethods().Contains(x))
-                       .Distinct(new UniqueMethods())
+                       .Where(x => x.IsPublic)
                        .ToList();
         }
 
