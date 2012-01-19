@@ -34,8 +34,8 @@ namespace ForceField.Core
 
         public static T Create<T>(T implementation, AdvisorsConfiguration configuration) where T : class
         {
-            Guard.ArgumentNotNull(() => implementation);
-            Guard.ArgumentNotNull(() => configuration);
+            Guard.ArgumentIsNotNull(() => implementation);
+            Guard.ArgumentIsNotNull(() => configuration);
 
             var type = typeof(T);
             return (T)Create(type, implementation, configuration);

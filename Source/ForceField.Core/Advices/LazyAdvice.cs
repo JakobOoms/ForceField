@@ -13,7 +13,7 @@ namespace ForceField.Core.Advices
 
         public LazyAdvice(Func<TInnerAdvice> createInnerAdvice)
         {
-            Guard.ArgumentNotNull(() => createInnerAdvice);
+            Guard.ArgumentIsNotNull(() => createInnerAdvice);
             _createInnerAdvice = createInnerAdvice;
         }
 

@@ -9,30 +9,45 @@ namespace ForceField.Core.Tests
     [TestClass]
     public class GuardTest
     {
+        #region NotNull
         [TestMethod]
         public void GuardNotNullWithInstanceShouldNotThrowException()
         {
-            InvokeTest(this);
+            InvokeGuardIsNotNullMethod(this);
         }
 
         [TestMethod]
         public void GuardNotNullTestWithNullShouldTrowException()
         {
-            bool correctException = false;
-            try
-            {
-                InvokeTest(null);
-            }
-            catch (ArgumentNullException e)
-            {
-                correctException = (e.ParamName == "guardTest");
-            }
-            Assert.IsTrue(correctException, "Wrong or no exception thrown");
+            Expect.ArgumentNullException(() => InvokeGuardIsNotNullMethod(null), e => e.ParamName == "guardTest");
         }
 
-        private void InvokeTest(GuardTest guardTest)
+        private void InvokeGuardIsNotNullMethod(GuardTest guardTest)
         {
-            Guard.ArgumentNotNull(() => guardTest);
+            Guard.ArgumentIsNotNull(() => guardTest);
         }
+
+        #endregion
+
+        #region NotEqual
+
+        [TestMethod]
+        public void GuardNotEqualShouldNotThrowWhenObjectsAreNotEqual()
+        {
+            InvokeGuardNotEqualsMethod(42);
+        }
+
+        [TestMethod]
+        public void GuardNotEqualShouldThrowWhenObjectsAreEqual()
+        {
+            Expect.ArgumentOutOfRangeException(() => InvokeGuardNotEqualsMethod(3), e => e.ParamName == "blockedValue");
+        }
+
+        private void InvokeGuardNotEqualsMethod(int blockedValue)
+        {
+            Guard.ArgumentIsNotEqualTo(() => blockedValue, 3);
+        }
+
+        #endregion
     }
 }

@@ -10,7 +10,7 @@ namespace ForceField.Core.Advices
 
         public AppliedAdvice(IAdvice advice, IPointcut pointcut)
         {
-            Guard.ArgumentNotNull(() => advice, () => pointcut);
+            Guard.ArgumentIsNotNull(() => advice, () => pointcut);
 
             Advice = advice;
             _pointcut = pointcut;

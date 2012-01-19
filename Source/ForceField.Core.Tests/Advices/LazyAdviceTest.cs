@@ -25,22 +25,20 @@ namespace ForceField.Core.Tests.Advices
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CannotInstantiateAdviceException))]
         public void ThrowExceptionIfInnerAdviceCannotBeBuild()
         {
             //Arrange
             var testInvocation = new TestInvocation();
             var sut = new LazyAdvice<TestAdviceWithoutParameterlessConstructor>(() => null);
 
-            //Act
-            sut.ApplyAdvice(testInvocation);
+            //Act + Assert
+            Expect.WillThrow<CannotInstantiateAdviceException>(() => sut.ApplyAdvice(testInvocation), e => e.Message.Contains(typeof(TestAdviceWithoutParameterlessConstructor).Name));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void CreateMethodIsRequired()
         {
-            new LazyAdvice<TestAdviceWithoutParameterlessConstructor>(null);
+            Expect.ArgumentNullException(() => new LazyAdvice<TestAdviceWithoutParameterlessConstructor>(null));
         }
 
         private class TestAdviceWithoutParameterlessConstructor : IAdvice

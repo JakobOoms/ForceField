@@ -6,7 +6,7 @@ namespace ForceField.Core.Extensions
     {
         public static bool IsVoid(this Type type)
         {
-            return type.FullName == typeof(void).FullName;
+            return type == typeof(void);
         }
     }
 }

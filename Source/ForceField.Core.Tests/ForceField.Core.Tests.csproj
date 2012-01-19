@@ -74,6 +74,7 @@
     <Compile Include="Advices\AppliedAdviceTest.cs" />
     <Compile Include="Advices\EmptyAdviceTest.cs" />
     <Compile Include="Advices\LazyAdviceTest.cs" />
+    <Compile Include="Expect.cs" />
     <Compile Include="Extensions\TypeExtensionTests.cs" />
     <Compile Include="Generator\ProxyGeneratorTest.cs" />
     <Compile Include="GuardTest.cs" />

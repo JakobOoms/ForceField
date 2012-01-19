@@ -12,6 +12,26 @@ namespace ForceField.Core.Tests.Generator
     public class ProxyGeneratorTest
     {
         [TestMethod]
+        public void TypeIsRequiredWhenGeneratingProxy()
+        {
+            //Arrange
+            var generator = new ProxyGenerator();
+
+            //Act + Assert
+            Expect.ArgumentNullException(() => generator.Generate(null));
+        }
+
+        [TestMethod]
+        public void VoidIsNotAValidTypeWhenGeneratingProxy()
+        {
+            //Arrange
+            var generator = new ProxyGenerator();
+
+            //Act + Assert
+            Expect.ArgumentOutOfRangeException(() => generator.Generate(typeof(void)));
+        }
+
+        [TestMethod]
         public void MethodsFromDerivedInterfacesShouldAlsoBeProxied()
         {
             //Arrange

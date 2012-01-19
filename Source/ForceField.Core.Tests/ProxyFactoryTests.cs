@@ -12,18 +12,19 @@ namespace ForceField.Core.Tests
     public class ProxyFactoryTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void TypeCannotBeNull()
         {
-            ProxyFactory.Create<TestClass>(null, new TestAdvisorConfiguration());
+            Expect.ArgumentNullException(() => ProxyFactory.Create<TestClass>(null, new TestAdvisorConfiguration()));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void ConfigurationCannotBeNull()
         {
+            //Arrange
             var instance = new TestClass();
-            ProxyFactory.Create(instance, null);
+
+            //Act + Assert
+            Expect.ArgumentNullException(() => ProxyFactory.Create(instance, null));
         }
 
         [TestMethod]
@@ -60,7 +61,6 @@ namespace ForceField.Core.Tests
         public void AdviceShouldBeCalledWhenPointcutSaysSo()
         {
             //Arrange
-            var instance = new TestClass();
             var config = new TestAdvisorConfiguration();
             var mockedAdvice = new Mock<IAdvice>();
             config.AddAdvice(mockedAdvice.Object, new AlwaysApplyAdvice());

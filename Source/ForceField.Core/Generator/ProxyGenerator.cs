@@ -39,12 +39,19 @@ namespace ForceField.Core.Generator
             return method.Name + "(" + string.Join(",", method.GetParameters().Select(x => x.Name)) + ")";
         }
 
-        
+        private IEnumerable<MethodInfo> GetPublicMethodsFor(Type type)
+        {
+            //TODO: clean up + is custom comparer (still) needed?
+            return type.GetMethods().Union(type.GetInterfaces().SelectMany(x => x.GetMethods())).Where(x => x.IsPublic && !typeof(object).GetMethods().Contains(x)).Distinct(new UniqueMethods()).ToList();
+        }
+
         public GeneratorResult Generate(Type type)
         {
+            Guard.ArgumentIsNotNull(() => type);
+            Guard.ArgumentIsNotEqualTo(() => type, typeof(void));
+
             var className = type.FullName.Replace(".", "_") + "Proxy";
-            //TODO: clean up + is custom comparer (still) needed?
-            var publicMethods = type.GetMethods().Union(type.GetInterfaces().SelectMany(x => x.GetMethods())).Where(x => x.IsPublic && !typeof(object).GetMethods().Contains(x)).Distinct(new UniqueMethods()).ToList();
+            var publicMethods = GetPublicMethodsFor(type);
 
             var code = new StringBuilder();
 
@@ -119,7 +126,7 @@ namespace ForceField.Core.Generator
             code.AppendLine("   }");
             code.AppendLine("}");
 
-            return new GeneratorResult(className,code.ToString());
+            return new GeneratorResult(className, code.ToString());
         }
     }
 }
