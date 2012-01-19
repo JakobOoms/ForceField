@@ -42,7 +42,11 @@ namespace ForceField.Core.Generator
         private IEnumerable<MethodInfo> GetPublicMethodsFor(Type type)
         {
             //TODO: clean up + is custom comparer (still) needed?
-            return type.GetMethods().Union(type.GetInterfaces().SelectMany(x => x.GetMethods())).Where(x => x.IsPublic && !typeof(object).GetMethods().Contains(x)).Distinct(new UniqueMethods()).ToList();
+            return type.GetMethods()
+                       .Union(type.GetInterfaces().SelectMany(x => x.GetMethods()))
+                       .Where(x => x.IsPublic && !typeof(object).GetMethods().Contains(x))
+                       .Distinct(new UniqueMethods())
+                       .ToList();
         }
 
         public GeneratorResult Generate(Type type)
@@ -65,7 +69,7 @@ namespace ForceField.Core.Generator
             code.AppendLine("using ForceField.Core.Advices;");
             code.AppendLine("using ForceField.Core;");
             code.AppendLine();
-            code.AppendLine("public class " + className + " : " + type.FullName);
+            code.AppendLine("public class " + className + " : " + type.FullName +", IDynamicProxy");
             code.AppendLine("{");
             code.AppendLine("   private readonly " + type.FullName + " _innerTarget;");
             code.AppendLine("   private readonly AdvisorsConfiguration _configuration;");
@@ -74,6 +78,11 @@ namespace ForceField.Core.Generator
             code.AppendLine("   {");
             code.AppendLine("       _innerTarget = innerTarget;");
             code.AppendLine("       _configuration = configuration;");
+            code.AppendLine("   }");
+
+            code.AppendLine("   AdvisorsConfiguration IDynamicProxy.Configuration");
+            code.AppendLine("   {");
+            code.AppendLine("       get { return _configuration; }");
             code.AppendLine("   }");
 
             foreach (var publicMethod in publicMethods)

@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ForceField.Core.Tests.Generator
 {
+    //TODO use Roslyn analyze methods to validate generated code instead of string comparison....
     [TestClass]
     public class ProxyGeneratorTest
     {
@@ -44,6 +45,19 @@ namespace ForceField.Core.Tests.Generator
             Assert.IsTrue(result.Code.Contains("public System.Boolean Baz()"));
             Assert.IsTrue(result.Code.Contains("public System.Int32 get_Bar()"));
             Assert.IsTrue(result.Code.Contains("public void Foo()"));
+        }
+
+        [TestMethod]
+        public void ProxyImplementsIDynamicProxy()
+        {
+            //Arrange
+            var generator = new ProxyGenerator();
+
+            //Act
+            var result = generator.Generate(typeof(ITestInterfaceExtended));
+
+            //Assert
+            Assert.IsTrue(result.Code.Contains("AdvisorsConfiguration IDynamicProxy.Configuration"));
         }
     }
 }
