@@ -5,19 +5,23 @@ using System.Reflection;
 
 namespace ForceField.Core.Invocation
 {
-    public class VoidInvocation<T> : BaseInvocation, IInvocation<T>
+    public class VoidInvocation<T> : IInvocation<T>
     {
         private readonly Action<T> _proceedMethod;
 
         [DebuggerStepThrough]
         public VoidInvocation(MethodInfo methodInfo, IEnumerable<InvocationArgument> arguments, T proceedingTarget, Action<T> proceedingMethod)
-            : base(methodInfo, arguments)
         {
+            MethodInfo = methodInfo;
+            Arguments = new IndexedEnumerable<InvocationArgument, string>(x => x.Parameter.Name, arguments);
             Target = proceedingTarget;
             _proceedMethod = proceedingMethod;
         }
 
-        public override void Proceed()
+        public IIndexerEnumerable<InvocationArgument, string> Arguments { get; private set; }
+        public MethodInfo MethodInfo { get; private set; }
+
+        public void Proceed()
         {
             _proceedMethod(Target);
         }
