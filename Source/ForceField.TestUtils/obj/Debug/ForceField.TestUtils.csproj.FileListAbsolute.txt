@@ -1,7 +1,0 @@
-C:\_Git\Projects\ForceField\Source\ForceField.TestUtils\bin\Debug\ForceField.TestUtils.dll
-C:\_Git\Projects\ForceField\Source\ForceField.TestUtils\bin\Debug\ForceField.TestUtils.pdb
-C:\_Git\Projects\ForceField\Source\ForceField.TestUtils\obj\Debug\ResolveAssemblyReference.cache
-C:\_Git\Projects\ForceField\Source\ForceField.TestUtils\obj\Debug\ForceField.TestUtils.dll
-C:\_Git\Projects\ForceField\Source\ForceField.TestUtils\obj\Debug\ForceField.TestUtils.pdb
-C:\_Git\Projects\ForceField\Source\ForceField.TestUtils\bin\Debug\ForceField.Core.dll
-C:\_Git\Projects\ForceField\Source\ForceField.TestUtils\bin\Debug\ForceField.Core.pdb
