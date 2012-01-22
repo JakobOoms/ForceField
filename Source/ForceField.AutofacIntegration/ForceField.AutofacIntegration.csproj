@@ -47,10 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutofacAdvisorConfiguration.cs" />
-    <Compile Include="AutofacContainerExtensions.cs" />
-    <Compile Include="IAOPAutofacContainer.cs" />
+    <Compile Include="AutofacContainerBuilderExtensions.cs" />
+    <Compile Include="IForceFieldAutofacContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WrappedAutofacContainer.cs" />
+    <Compile Include="ForceFieldAutofacContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

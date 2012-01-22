@@ -2,7 +2,7 @@
 using ForceField.Core.Advices;
 using ForceField.Core.Invocation;
 using ForceField.Core.Pointcuts;
-using ForceField.Core.Tests.TestObjects;
+using ForceField.TestUtils.TestObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

@@ -1,0 +1,12 @@
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\ForceField.AutofacIntegration.Tests.dll
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\ForceField.AutofacIntegration.Tests.pdb
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\ForceField.AutofacIntegration.dll
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\ForceField.Core.dll
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\ForceField.AutofacIntegration.pdb
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\ForceField.Core.pdb
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\Autofac.xml
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\obj\Debug\ForceField.AutofacIntegration.Tests.dll
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\obj\Debug\ForceField.AutofacIntegration.Tests.pdb
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\ForceField.TestUtils.dll
+C:\_Git\Projects\ForceField\Source\ForceField.AutofacIntegration.Tests\bin\Debug\ForceField.TestUtils.pdb

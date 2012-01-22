@@ -20,3 +20,5 @@ C:\_Git\Projects\ForceField\Source\ForceField.Core.Tests\bin\Debug\Roslyn.Compil
 C:\_Git\Projects\ForceField\Source\ForceField.Core.Tests\bin\Debug\Roslyn.Services.xml
 C:\_Git\Projects\ForceField\Source\ForceField.Core.Tests\bin\Debug\Roslyn.Services.CSharp.xml
 C:\_Git\Projects\ForceField\Source\ForceField.Core.Tests\bin\Debug\Roslyn.Services.VisualBasic.xml
+C:\_Git\Projects\ForceField\Source\ForceField.Core.Tests\bin\Debug\ForceField.TestUtils.dll
+C:\_Git\Projects\ForceField\Source\ForceField.Core.Tests\bin\Debug\ForceField.TestUtils.pdb

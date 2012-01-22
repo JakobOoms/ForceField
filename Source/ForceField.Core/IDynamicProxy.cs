@@ -1,11 +1,7 @@
 namespace ForceField.Core
 {
-    /// <summary>
-    /// Interface that all dynamicly generated proxies will explicitly implement.
-    /// In this way, the configuration of the proxy can still be altered at runtime.
-    /// </summary>
+    //Marker interface that will be added to a generated proxy
     public interface IDynamicProxy
     {
-        AdvisorsConfiguration Configuration { get; }
     }
 }

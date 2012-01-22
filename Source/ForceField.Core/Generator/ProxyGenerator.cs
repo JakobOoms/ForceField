@@ -47,14 +47,14 @@ namespace ForceField.Core.Generator
             code.AppendLine("using System;");
             code.AppendLine("using System.Collections.Generic;");
             code.AppendLine("using System.Linq;");
-            code.AppendLine("using System.Linq.Expressions;");
+            //code.AppendLine("using System.Linq.Expressions;");
             code.AppendLine("using System.Reflection;");
             code.AppendLine("using System.Text;");
             code.AppendLine("using ForceField.Core.Invocation;");
             code.AppendLine("using ForceField.Core.Advices;");
             code.AppendLine("using ForceField.Core;");
             code.AppendLine();
-            code.AppendLine("public class " + className + " : " + type.FullName +", IDynamicProxy");
+            code.AppendLine("public class " + className + " : " + type.FullName + ", IHaveConfiguration, IDynamicProxy");
             code.AppendLine("{");
             code.AppendLine("   private readonly " + type.FullName + " _innerTarget;");
             code.AppendLine("   private readonly AdvisorsConfiguration _configuration;");
@@ -65,7 +65,7 @@ namespace ForceField.Core.Generator
             code.AppendLine("       _configuration = configuration;");
             code.AppendLine("   }");
 
-            code.AppendLine("   AdvisorsConfiguration IDynamicProxy.Configuration");
+            code.AppendLine("   AdvisorsConfiguration IHaveConfiguration.Configuration");
             code.AppendLine("   {");
             code.AppendLine("       get { return _configuration; }");
             code.AppendLine("   }");

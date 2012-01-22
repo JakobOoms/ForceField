@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AOPEnabledUnityContainer.cs" />
+    <Compile Include="ForceFieldUnityContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityAdvisorConfiguration.cs" />
   </ItemGroup>

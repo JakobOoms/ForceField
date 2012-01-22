@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using ForceField.Core.Pointcuts;
-using ForceField.Core.Tests.TestObjects;
+using ForceField.TestUtils.TestObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ForceField.Core.Tests.Pointcuts

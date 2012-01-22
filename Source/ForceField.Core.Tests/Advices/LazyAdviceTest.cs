@@ -1,6 +1,6 @@
 ﻿using System;
 using ForceField.Core.Advices;
-using ForceField.Core.Tests.TestObjects;
+using ForceField.TestUtils.TestObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

@@ -26,7 +26,7 @@ namespace ForceField.Examples
             unityAdvisorConfiguration.AddAdvice<ExceptionHandlingAdvice>(new ApplyAdviceOnAllRepositories());
             unityAdvisorConfiguration.AddAdvice<LoggerAdvice>(new ApplyAdviceOnAllRepositories());
             unityAdvisorConfiguration.AddAdvice<EmptyAdvice>(ApplyAdvice.OnEveryMethod);
-            var unity = new AOPEnabledUnityContainer(unityAdvisorConfiguration);
+            var unity = new ForceFieldUnityContainer(unityAdvisorConfiguration);
             unity.RegisterType<ICacheProvider, RamCacheProvider>();
             unity.RegisterType<ILoggingService, LoggingService>();
             unity.RegisterType<IOtherService, OtherService>();

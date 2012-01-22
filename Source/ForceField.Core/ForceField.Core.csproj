@@ -71,12 +71,14 @@
     <Compile Include="Advices\IAdvice.cs" />
     <Compile Include="Advices\LazyAdvice.cs" />
     <Compile Include="AdvisorsConfiguration.cs" />
+    <Compile Include="Extensions\ICollectionExtensions.cs" />
     <Compile Include="Extensions\MethodInfoExtensions.cs" />
     <Compile Include="Generator\GeneratorResult.cs" />
     <Compile Include="Generator\HostingContainer.cs" />
     <Compile Include="Generator\ProxyGenerator.cs" />
     <Compile Include="Guard.cs" />
     <Compile Include="IDynamicProxy.cs" />
+    <Compile Include="IHaveConfiguration.cs" />
     <Compile Include="Invocation\ChainedInvocation.cs" />
     <Compile Include="Invocation\FunctionInvocation.cs" />
     <Compile Include="IIndexerEnumerable.cs" />
