@@ -44,7 +44,7 @@ namespace ForceField.Core.Tests.Generator
             //Assert
             Assert.IsTrue(result.Code.Contains("public System.Boolean Baz()"));
             Assert.IsTrue(result.Code.Contains("public System.Int32 get_Bar()"));
-            Assert.IsTrue(result.Code.Contains("public void GetAssemblyLocations()"));
+            Assert.IsTrue(result.Code.Contains("public void Foo()"));
         }
 
         [TestMethod]

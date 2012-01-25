@@ -68,7 +68,7 @@ namespace ForceField.Core
         }
     }
 
-    internal class AssemblyNameToAssemblyLocationMapper
+    internal class AssemblyNameToAssemblyLocationMapper     
     {
         public IEnumerable<string> GetAssemblyLocations(ICollection<AssemblyName> assemblyNames)
         {
@@ -76,17 +76,20 @@ namespace ForceField.Core
             if (assemblyNames.Count == 0)
                 return Enumerable.Empty<string>();
 
-            var tempAppDomain = AppDomain.CreateDomain("ForceField_TempAppDomain_" + Guid.NewGuid(), null, new AppDomainSetup());
+            var hashSet = new HashSet<string>();
+            var tempAppDomain = AppDomain.CreateDomain("ForceField_TempAppDomain_" + Guid.NewGuid(), null, AppDomain.CurrentDomain.SetupInformation);
             var runner = new LocationExtractor(assemblyNames.Select(x => x.FullName).ToList());
             tempAppDomain.DoCallBack(runner.SetLocations);
-            var result = (List<string>)tempAppDomain.GetData("locations");
+            hashSet.AddRange((IEnumerable<string>) tempAppDomain.GetData(LocationExtractor.LocationsKey));
+            hashSet.Add(typeof(Enumerable).Assembly.Location);
             AppDomain.Unload(tempAppDomain);
-            return result;
+            return hashSet;
         }
 
         [Serializable]
         private class LocationExtractor
         {
+            public const string LocationsKey = "locations";
             private readonly IEnumerable<string> _assemblyFullNames;
 
             public LocationExtractor(IEnumerable<string> assemblyFullNames)
@@ -98,7 +101,7 @@ namespace ForceField.Core
             {
                 var domain = AppDomain.CurrentDomain;
                 var locations = _assemblyFullNames.Select(domain.Load).Select(ass => ass.Location).ToList();
-                domain.SetData("locations", locations);
+                domain.SetData(LocationsKey, locations);
             }
         }
     }
