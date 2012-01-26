@@ -13,7 +13,7 @@ namespace ForceField.Core
     {
         private static readonly Dictionary<Type, ProxyInstantiator> Instantiators = new Dictionary<Type, ProxyInstantiator>();
 
-        public static object Create(Type type, object implementation, AdvisorsConfiguration configuration)
+        public static object Create(Type type, object implementation, BaseConfiguration configuration)
         {
             var typeHasInterestedAdvices = configuration.AppliedAdvices.Any(appliedAdvice => appliedAdvice.IsApplicableFor(type));
 
@@ -33,7 +33,7 @@ namespace ForceField.Core
             return proxyInstantiator.Create(implementation, strippedConfiguration);
         }
 
-        public static T Create<T>(T implementation, AdvisorsConfiguration configuration) where T : class
+        public static T Create<T>(T implementation, BaseConfiguration configuration) where T : class
         {
             Guard.ArgumentIsNotNull(() => implementation);
             Guard.ArgumentIsNotNull(() => configuration);

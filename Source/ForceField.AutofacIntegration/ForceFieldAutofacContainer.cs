@@ -10,10 +10,13 @@ namespace ForceField.AutofacIntegration
     public class ForceFieldAutofacContainer : IForceFieldAutofacContainer
     {
         private readonly IContainer _innerContainer;
-        private readonly AdvisorsConfiguration _configuration;
+        private readonly BaseConfiguration _configuration;
 
-        public ForceFieldAutofacContainer(IContainer innerContainer, AdvisorsConfiguration configuration)
+        public ForceFieldAutofacContainer(IContainer innerContainer, BaseConfiguration configuration)
         {
+            Guard.ArgumentIsNotNull(() => innerContainer,
+                                    () => configuration);
+
             _innerContainer = innerContainer;
             _configuration = configuration;
             innerContainer.ChildLifetimeScopeBeginning += (sender, e) => { if (ChildLifetimeScopeBeginning != null) ChildLifetimeScopeBeginning(sender, e); };
@@ -65,7 +68,7 @@ namespace ForceField.AutofacIntegration
         public object ResolveComponent(IComponentRegistration registration, IEnumerable<Parameter> parameters)
         {
             var instance = _innerContainer.ResolveComponent(registration, parameters);
-            var typedService = (TypedService) registration.Services.First();
+            var typedService = (TypedService)registration.Services.First();
             return ProxyFactory.Create(typedService.ServiceType, instance, _configuration);
         }
 
@@ -74,7 +77,7 @@ namespace ForceField.AutofacIntegration
             _innerContainer.Dispose();
         }
 
-        public AdvisorsConfiguration Configuration
+        public BaseConfiguration Configuration
         {
             get { return _configuration; }
         }

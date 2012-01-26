@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity;
 
 namespace ForceField.UnityIntegration
 {
-    public class UnityAdvisorConfiguration : AdvisorsConfiguration
+    public class Configuration : BaseConfiguration
     {
         private IUnityContainer _innerContainer;
 
@@ -18,9 +18,9 @@ namespace ForceField.UnityIntegration
             return _innerContainer.Registrations.Any(registration => registration.RegisteredType == typeof(TAdvice)) ? _innerContainer.Resolve<TAdvice>() : null;
         }
 
-        protected override AdvisorsConfiguration Clone()
+        protected override BaseConfiguration Clone()
         {
-            var clone = new UnityAdvisorConfiguration();
+            var clone = new Configuration();
             clone.SetInnerContainer(_innerContainer);
             return clone;
         }

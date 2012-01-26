@@ -8,7 +8,7 @@ namespace ForceField.AutofacIntegration
     /// Acts as an 'entry point' for the end user by using an 'overload' of the build method, in which they can pass the configuration
     /// that should be applied to the registered services.
     /// </summary>
-    public static class AutofacContainerBuilderExtensions
+    public static class ContainerBuilderExtensions
     {
         /// <summary>
         /// Builds the autofac container and applies the advices from the configuration to the registered services
@@ -16,7 +16,7 @@ namespace ForceField.AutofacIntegration
         /// <param name="builder"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IForceFieldAutofacContainer Build(this ContainerBuilder builder, AutofacAdvisorConfiguration configuration)
+        public static IForceFieldAutofacContainer Build(this ContainerBuilder builder, Configuration configuration)
         {
             Guard.ArgumentIsNotNull(() => builder);
             Guard.ArgumentIsNotNull(() => configuration);

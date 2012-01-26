@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForceField.AutofacIntegrati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForceField.TestUtils", "ForceField.TestUtils\ForceField.TestUtils.csproj", "{33C2D142-2383-4B9B-A750-E4E2C27C20BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForceField.UnityIntegration.Tests", "ForceField.UnityIntegration.Tests\ForceField.UnityIntegration.Tests.csproj", "{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ForceField.vsmdi
@@ -107,6 +109,16 @@ Global
 		{33C2D142-2383-4B9B-A750-E4E2C27C20BD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{33C2D142-2383-4B9B-A750-E4E2C27C20BD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{33C2D142-2383-4B9B-A750-E4E2C27C20BD}.Release|x86.ActiveCfg = Release|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +128,7 @@ Global
 		{8682A005-343B-4730-B8B9-23E0F96E2022} = {F83B15D1-8431-447C-A503-98C5BE7D861D}
 		{61D4B077-F1F8-4999-ADFB-363090696C13} = {F83B15D1-8431-447C-A503-98C5BE7D861D}
 		{33C2D142-2383-4B9B-A750-E4E2C27C20BD} = {F83B15D1-8431-447C-A503-98C5BE7D861D}
+		{4EBF7432-9BBF-4D5D-A2B8-B975A3806907} = {F83B15D1-8431-447C-A503-98C5BE7D861D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35

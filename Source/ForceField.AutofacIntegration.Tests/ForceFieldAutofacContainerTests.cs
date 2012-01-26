@@ -10,9 +10,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ForceField.AutofacIntegration.Tests
 {
-    /// <summary>
-    /// Summary description for ForceFieldAutofacContainerTests
-    /// </summary>
     [TestClass]
     public class ForceFieldAutofacContainerTests
     {
@@ -21,8 +18,8 @@ namespace ForceField.AutofacIntegration.Tests
         {
             //Arrange
             var containerBuilder = new ContainerBuilder();
-            var configuration = new AutofacAdvisorConfiguration();
-            configuration.AddAdvice<TestAdvice>(ApplyAdvice.OnEveryMethod);
+            var configuration = new Configuration();
+            configuration.Add<TestAdvice>(ApplyAdvice.OnEveryMethod);
 
             //Act
             var forceFieldContainer = containerBuilder.Build(configuration);
@@ -37,8 +34,8 @@ namespace ForceField.AutofacIntegration.Tests
             //Arrange
             var containerBuilder = new ContainerBuilder();
             containerBuilder.Register(c => new TestInterfaceExtended()).As<ITestInterface>();
-            var configuration = new AutofacAdvisorConfiguration();
-            configuration.AddAdvice<TestAdvice>(ApplyAdvice.OnEveryMethod);
+            var configuration = new Configuration();
+            configuration.Add<TestAdvice>(ApplyAdvice.OnEveryMethod);
             var forceFieldContainer = containerBuilder.Build(configuration);
 
             //Act

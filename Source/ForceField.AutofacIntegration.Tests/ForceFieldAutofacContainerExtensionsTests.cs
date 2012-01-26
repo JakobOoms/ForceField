@@ -19,7 +19,7 @@ namespace ForceField.AutofacIntegration.Tests
         {
             //Arrange
             ContainerBuilder builder = null;
-            var config = new AutofacAdvisorConfiguration();
+            var config = new Configuration();
 
             //Act + Assert
             Expect.ArgumentNullException(() => builder.Build(config));
@@ -40,8 +40,8 @@ namespace ForceField.AutofacIntegration.Tests
         {
             //Arrange
             var containerBuilder = new ContainerBuilder();
-            var configuration = new AutofacAdvisorConfiguration();
-            configuration.AddAdvice<TestAdvice>(ApplyAdvice.OnEveryMethod);
+            var configuration = new Configuration();
+            configuration.Add<TestAdvice>(ApplyAdvice.OnEveryMethod);
 
             //Act
             var forceFieldContainer = containerBuilder.Build(configuration);

@@ -57,15 +57,15 @@ namespace ForceField.Core.Generator
             code.AppendLine("public class " + className + " : " + type.FullName + ", IHaveConfiguration, IDynamicProxy");
             code.AppendLine("{");
             code.AppendLine("   private readonly " + type.FullName + " _innerTarget;");
-            code.AppendLine("   private readonly AdvisorsConfiguration _configuration;");
+            code.AppendLine("   private readonly BaseConfiguration _configuration;");
 
-            code.AppendLine("   public " + className + "(" + type.FullName + " innerTarget, AdvisorsConfiguration configuration)");
+            code.AppendLine("   public " + className + "(" + type.FullName + " innerTarget, BaseConfiguration configuration)");
             code.AppendLine("   {");
             code.AppendLine("       _innerTarget = innerTarget;");
             code.AppendLine("       _configuration = configuration;");
             code.AppendLine("   }");
 
-            code.AppendLine("   AdvisorsConfiguration IHaveConfiguration.Configuration");
+            code.AppendLine("   BaseConfiguration IHaveConfiguration.Configuration");
             code.AppendLine("   {");
             code.AppendLine("       get { return _configuration; }");
             code.AppendLine("   }");

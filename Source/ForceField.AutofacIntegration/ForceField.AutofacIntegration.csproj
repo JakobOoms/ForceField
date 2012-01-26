@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutofacAdvisorConfiguration.cs" />
-    <Compile Include="AutofacContainerBuilderExtensions.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="ContainerBuilderExtensions.cs" />
     <Compile Include="IForceFieldAutofacContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ForceFieldAutofacContainer.cs" />

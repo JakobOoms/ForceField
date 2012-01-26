@@ -8,21 +8,23 @@ namespace ForceField.UnityIntegration
 {
     public class ForceFieldUnityContainer : IUnityContainer
     {
-        private readonly UnityAdvisorConfiguration _configuration;
+        private readonly Configuration _configuration;
         private readonly UnityContainer _innerContainer;
 
-        public ForceFieldUnityContainer(UnityAdvisorConfiguration configuration)
+        public ForceFieldUnityContainer(Configuration configuration)
         {
+            Guard.ArgumentIsNotNull(() => configuration);
+
             _configuration = configuration;
             _configuration.SetInnerContainer(this);
             _innerContainer = new UnityContainer();
-         
+
             //Register all the advices into the container, so they can be resolved when needed
             foreach (var adviceType in configuration.GetRegisteredAdvices())
                 _innerContainer.RegisterType(adviceType);
         }
 
-        public AdvisorsConfiguration Configuration
+        public BaseConfiguration Configuration
         {
             get { return _configuration; }
         }

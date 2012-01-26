@@ -2,16 +2,16 @@ using ForceField.Core;
 
 namespace ForceField.TestUtils.TestObjects
 {
-    public class TestAdvisorConfiguration : AdvisorsConfiguration
+    public class TestBaseConfiguration : BaseConfiguration
     {
         protected override T TryResolveAdvice<T>()
         {
             return null;
         }
 
-        protected override AdvisorsConfiguration Clone()
+        protected override BaseConfiguration Clone()
         {
-            return new TestAdvisorConfiguration();
+            return new TestBaseConfiguration();
         }
     }
 }

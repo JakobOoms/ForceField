@@ -3,7 +3,7 @@ using ForceField.Core;
 
 namespace ForceField.AutofacIntegration
 {
-    public class AutofacAdvisorConfiguration : AdvisorsConfiguration
+    public class Configuration : BaseConfiguration
     {
         private IContainer _container;
 
@@ -17,9 +17,9 @@ namespace ForceField.AutofacIntegration
             return _container.ResolveOptional<T>();
         }
 
-        protected override AdvisorsConfiguration Clone()
+        protected override BaseConfiguration Clone()
         {
-            var clone = new AutofacAdvisorConfiguration();
+            var clone = new Configuration();
             clone.SetContainer(_container);
             return clone;
         }

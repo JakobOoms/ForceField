@@ -57,7 +57,7 @@ namespace ForceField.Core.Tests.Generator
             var result = generator.Generate(typeof(ITestInterfaceExtended));
 
             //Assert
-            Assert.IsTrue(result.Code.Contains("AdvisorsConfiguration IHaveConfiguration.Configuration"));
+            Assert.IsTrue(result.Code.Contains("BaseConfiguration IHaveConfiguration.Configuration"));
         }
     }
 }

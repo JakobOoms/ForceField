@@ -6,14 +6,13 @@ using ForceField.Core.Pointcuts;
 
 namespace ForceField.Core
 {
-    //TODO: is the 'blockedTypes' approach the right one to surpress the advices itself being proxied?
-    //TODO: find better name, is the 'Advisor' name is not used anymore (this is now an 'AppliedAdvice')
-    public abstract class AdvisorsConfiguration
+    //TODO: revise the blockedTypes approach
+    public abstract class BaseConfiguration
     {
         protected readonly List<AppliedAdvice> _appliedAdvices;
         private readonly HashSet<Type> _blockedTypes;
 
-        protected AdvisorsConfiguration()
+        protected BaseConfiguration()
         {
             _appliedAdvices = new List<AppliedAdvice>();
             _blockedTypes = new HashSet<Type>();
@@ -39,7 +38,7 @@ namespace ForceField.Core
             return _blockedTypes.Contains(type);
         }
 
-        public void AddAdvice<TAdvice>(IPointcut pointcut)
+        public void Add<TAdvice>(IPointcut pointcut)
             where TAdvice : class, IAdvice
         {
             //If the advice is registered in the IOC container (if the advice itself has any dependencies that have to be resolved), 
@@ -50,20 +49,20 @@ namespace ForceField.Core
             //The LazyAdvice allows us to delay the creation of the required advice untill the moment
             //that the IOC container is fully set up.
             var advice = new LazyAdvice<TAdvice>(TryResolveAdvice<TAdvice>);
-            AddAdvice(advice, pointcut);
+            Add(advice, pointcut);
             _blockedTypes.Add(typeof(TAdvice));
         }
 
-        public void AddAdvice(IAdvice advice, IPointcut pointcut)
+        public void Add(IAdvice advice, IPointcut pointcut)
         {
             _appliedAdvices.Add(new AppliedAdvice(advice, pointcut));
             _blockedTypes.Add(advice.GetType());
         }
 
         protected abstract T TryResolveAdvice<T>() where T : class;
-        protected abstract AdvisorsConfiguration Clone();
+        protected abstract BaseConfiguration Clone();
 
-        public AdvisorsConfiguration CreateCopyFor(Type targetType)
+        public BaseConfiguration CreateCopyFor(Type targetType)
         {
             var copy = Clone();
             var advicesToCopy = _appliedAdvices.Where(appliedAdvice => appliedAdvice.IsApplicableFor(targetType));

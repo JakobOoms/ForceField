@@ -70,7 +70,7 @@
     <Compile Include="Advices\EmptyAdvice.cs" />
     <Compile Include="Advices\IAdvice.cs" />
     <Compile Include="Advices\LazyAdvice.cs" />
-    <Compile Include="AdvisorsConfiguration.cs" />
+    <Compile Include="BaseConfiguration.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\MethodInfoExtensions.cs" />

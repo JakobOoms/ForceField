@@ -50,7 +50,7 @@
     <Compile Include="TestObjects\ITestInterface.cs" />
     <Compile Include="TestObjects\ITestInterfaceExtended.cs" />
     <Compile Include="TestObjects\TestAdvice.cs" />
-    <Compile Include="TestObjects\TestAdvisorConfiguration.cs" />
+    <Compile Include="TestObjects\TestBaseConfiguration.cs" />
     <Compile Include="TestObjects\TestClass.cs" />
     <Compile Include="TestObjects\TestInterfaceExtended.cs" />
     <Compile Include="TestObjects\TestInvocation.cs" />
