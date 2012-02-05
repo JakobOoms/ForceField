@@ -10,14 +10,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ForceField.UnityIntegration.Tests
 {
     [TestClass]
-    public class ForceFieldUnityContainerTests
+    public class ConfigurationTests
     {
         [TestMethod]
-        public void InnerContainerIsRequiredParaeterForConstructor()
+        public void InnerContainerIsARequiredParameterForConstructor()
         {
             //Arrange
-             Configuration configuration = null;
-            
+            Configuration configuration = null;
+
             //Act + Assert
             Expect.ArgumentNullException(() => new ForceFieldUnityContainer(configuration));
         }

@@ -6,7 +6,7 @@ using ForceField.Core.Pointcuts;
 
 namespace ForceField.Core
 {
-    //TODO: revise the blockedTypes approach
+    //TODO: revise the blockedTypes approach, I don't think it is used / required anymore
     public abstract class BaseConfiguration
     {
         protected readonly List<AppliedAdvice> _appliedAdvices;
@@ -41,14 +41,12 @@ namespace ForceField.Core
         public void Add<TAdvice>(IPointcut pointcut)
             where TAdvice : class, IAdvice
         {
-            //If the advice is registered in the IOC container (if the advice itself has any dependencies that have to be resolved), 
-            //we let the container build the advice for us. If it is not registered, we assume that there is an public default constructor an instantiate 
-            //the advice via that way.
+            //All advices are registered in the IOC container, so we can easily let the container create our advices
 
             //LazyAdvice: at the moment of registering the advices, the IOC container itself might not be build up completely. 
-            //The LazyAdvice allows us to delay the creation of the required advice untill the moment
-            //that the IOC container is fully set up.
-            var advice = new LazyAdvice<TAdvice>(TryResolveAdvice<TAdvice>);
+            //The LazyAdvice allows us to delay the creation of the required advice until the moment
+            //that the advice is actually needed (and the IOC container is completely builded).
+            var advice = new LazyAdvice<TAdvice>(ResolveAdvice<TAdvice>);
             Add(advice, pointcut);
             _blockedTypes.Add(typeof(TAdvice));
         }
@@ -59,7 +57,7 @@ namespace ForceField.Core
             _blockedTypes.Add(advice.GetType());
         }
 
-        protected abstract T TryResolveAdvice<T>() where T : class;
+        protected abstract T ResolveAdvice<T>() where T : class;
         protected abstract BaseConfiguration Clone();
 
         public BaseConfiguration CreateCopyFor(Type targetType)

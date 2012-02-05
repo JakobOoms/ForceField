@@ -12,7 +12,7 @@ namespace ForceField.Core.Extensions
         /// <returns></returns>
         public static string GetUniqueMethodName(this MethodInfo method)
         {
-            return method.Name + "_" + string.Join("_", method.GetParameters().Select(x => x.Name + "_" + x.ParameterType.Name));
+            return method.Name + "_" + string.Join("_", method.GetParameters().Select(x => x.Name + "_" + x.ParameterType.GetFullName(true)));
         }
     }
 }

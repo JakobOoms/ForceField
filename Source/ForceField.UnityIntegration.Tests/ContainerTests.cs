@@ -9,11 +9,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ForceField.UnityIntegration.Tests
 {
-    /// <summary>
-    /// Summary description for ForceFieldUntityConfigurationTests
-    /// </summary>
     [TestClass]
-    public class ForceFieldUntityConfigurationTests
+    public class ContainerTests
     {
         private ForceFieldUnityContainer CreateContainer()
         {

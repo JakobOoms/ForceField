@@ -4,7 +4,7 @@ namespace ForceField.TestUtils.TestObjects
 {
     public class TestBaseConfiguration : BaseConfiguration
     {
-        protected override T TryResolveAdvice<T>()
+        protected override T ResolveAdvice<T>()
         {
             return null;
         }

@@ -3,11 +3,16 @@ using ForceField.Core.Invocation;
 
 namespace ForceField.Core.Pointcuts
 {
-    //TODO: internal or public? Might be interesting for small/easy pointcuts
-    internal class InlinePointcut : IPointcut
+    public class InlinePointcut : IPointcut
     {
         private readonly Func<Type, bool> _interestedInType;
         private readonly Func<IInvocation, bool> _interestedInInvocation;
+
+
+        public InlinePointcut(Func<Type, bool> interestedInType)
+            : this(interestedInType, x => true)
+        {
+        }
 
         public InlinePointcut(Func<Type, bool> interestedInType, Func<IInvocation, bool> interestedInInvocation)
         {

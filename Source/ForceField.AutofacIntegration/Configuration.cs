@@ -9,10 +9,11 @@ namespace ForceField.AutofacIntegration
 
         internal void SetContainer(IContainer container)
         {
+            Guard.ArgumentIsNotNull(() => container);
             _container = container;
         }
 
-        protected override T TryResolveAdvice<T>()
+        protected override T ResolveAdvice<T>()
         {
             return _container.ResolveOptional<T>();
         }

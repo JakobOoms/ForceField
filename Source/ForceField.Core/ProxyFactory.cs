@@ -62,13 +62,13 @@ namespace ForceField.Core
             var scriptEngine = new ScriptEngine(GetRequiredAssemblies(type));
             var scriptSession = Session.Create(hostingContainer);
 
-            scriptEngine.Execute(generatedClassResult.Code, scriptSession);
-            scriptEngine.Execute(@"ProxyInstantiator = new ProxyInstantiator((innerTarget,configuration) => new " + generatedClassResult.GeneratedClassName + "((" + type.FullName + ")innerTarget, configuration));", scriptSession);
+             scriptEngine.Execute(generatedClassResult.Code, scriptSession);
+            scriptEngine.Execute(@"ProxyInstantiator = new ProxyInstantiator((innerTarget,configuration) => new " + generatedClassResult.GeneratedClassName + "((" + type.GetFullName() + ")innerTarget, configuration));", scriptSession);
             return hostingContainer.ProxyInstantiator;
         }
     }
 
-    internal class AssemblyNameToAssemblyLocationMapper     
+    internal class AssemblyNameToAssemblyLocationMapper
     {
         public IEnumerable<string> GetAssemblyLocations(ICollection<AssemblyName> assemblyNames)
         {
@@ -80,7 +80,7 @@ namespace ForceField.Core
             var tempAppDomain = AppDomain.CreateDomain("ForceField_TempAppDomain_" + Guid.NewGuid(), null, AppDomain.CurrentDomain.SetupInformation);
             var runner = new LocationExtractor(assemblyNames.Select(x => x.FullName).ToList());
             tempAppDomain.DoCallBack(runner.SetLocations);
-            hashSet.AddRange((IEnumerable<string>) tempAppDomain.GetData(LocationExtractor.LocationsKey));
+            hashSet.AddRange((IEnumerable<string>)tempAppDomain.GetData(LocationExtractor.LocationsKey));
             hashSet.Add(typeof(Enumerable).Assembly.Location);
             AppDomain.Unload(tempAppDomain);
             return hashSet;

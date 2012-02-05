@@ -48,8 +48,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ForceFieldUnityContainerTests.cs" />
-    <Compile Include="ForceFieldUntityConfigurationTests.cs" />
+    <Compile Include="ConfigurationTests.cs" />
+    <Compile Include="ContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

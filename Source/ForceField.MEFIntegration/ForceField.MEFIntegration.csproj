@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{33C2D142-2383-4B9B-A750-E4E2C27C20BD}</ProjectGuid>
+    <ProjectGuid>{5C9E6A9F-80DB-4D79-AC64-22FB9FBAD08A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ForceField.TestUtils</RootNamespace>
-    <AssemblyName>ForceField.TestUtils</AssemblyName>
+    <RootNamespace>ForceField.MEFIntegration</RootNamespace>
+    <AssemblyName>ForceField.MEFIntegration</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -45,16 +45,10 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Expect.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="ForceFieldContainer.cs" />
+    <Compile Include="ForceFieldExport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestObjects\ITestInterface.cs" />
-    <Compile Include="TestObjects\ITestInterfaceExtended.cs" />
-    <Compile Include="TestObjects\TestAdvice.cs" />
-    <Compile Include="TestObjects\TestAdviceWithDependency.cs" />
-    <Compile Include="TestObjects\TestBaseConfiguration.cs" />
-    <Compile Include="TestObjects\TestClass.cs" />
-    <Compile Include="TestObjects\TestInterfaceExtended.cs" />
-    <Compile Include="TestObjects\TestInvocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ForceField.Core\ForceField.Core.csproj">

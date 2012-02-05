@@ -22,7 +22,7 @@ namespace ForceField.AutofacIntegration.Tests
             var config = new Configuration();
 
             //Act + Assert
-            Expect.ArgumentNullException(() => builder.Build(config));
+            Expect.ArgumentNullException(() => ContainerBuilderExtensions.Build(builder, config));
         }
 
         [TestMethod]

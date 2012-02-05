@@ -12,13 +12,14 @@ namespace ForceField.Core.Generator
         private string ReturnSignature(Type type, MethodInfo method)
         {
             return method.ReturnType.IsVoid()
-                       ? "VoidInvocation<" + type.FullName + ">"
-                       : "FunctionInvocation<" + type.FullName + ", " + method.ReturnType.FullName + ">";
+                       ? "VoidInvocation<" + type.GetFullName() + ">"
+                       : "FunctionInvocation<" + type.GetFullName() + ", " + method.ReturnType.GetFullName() + ">";
         }
 
         private string GetInvocation(Type type, MethodInfo method)
         {
-            return "        var invocation = new " + ReturnSignature(type, method) + "(" + method.GetUniqueMethodName() + "MethodInfo, arguments, _innerTarget, x => x." + GetSelfInvoke(method) + ");";
+            return "        var invocation = new " + ReturnSignature(type, method) + "(" + method.GetUniqueMethodName() +
+                   "MethodInfo, arguments, _innerTarget, x => x." + GetSelfInvoke(method) + ");";
         }
 
         private string GetSelfInvoke(MethodInfo method)
@@ -29,9 +30,23 @@ namespace ForceField.Core.Generator
         private IEnumerable<MethodInfo> GetPublicMethodsFor(Type type)
         {
             return type.GetMethods()
-                       .Union(type.GetInterfaces().SelectMany(x => x.GetMethods()))
-                       .Where(x => x.IsPublic)
-                       .ToList();
+                .Union(type.GetInterfaces().SelectMany(x => x.GetMethods()))
+                .Where(x => x.IsPublic)
+                .Distinct(new MethodInfoComparer())
+                .ToList();
+        }
+
+        private class MethodInfoComparer : IEqualityComparer<MethodInfo>
+        {
+            public bool Equals(MethodInfo x, MethodInfo y)
+            {
+                return x.GetUniqueMethodName() == y.GetUniqueMethodName();
+            }
+
+            public int GetHashCode(MethodInfo obj)
+            {
+                return obj.GetUniqueMethodName().GetHashCode();
+            }
         }
 
         public GeneratorResult Generate(Type type)
@@ -39,7 +54,8 @@ namespace ForceField.Core.Generator
             Guard.ArgumentIsNotNull(() => type);
             Guard.ArgumentIsNotEqualTo(() => type, typeof(void));
 
-            var className = type.FullName.Replace(".", "_") + "Proxy";
+            var className = type.GetFullName(true)+ "Proxy";
+            var interfaceType = type.GetFullName();
             var publicMethods = GetPublicMethodsFor(type);
 
             var code = new StringBuilder();
@@ -54,12 +70,12 @@ namespace ForceField.Core.Generator
             code.AppendLine("using ForceField.Core.Advices;");
             code.AppendLine("using ForceField.Core;");
             code.AppendLine();
-            code.AppendLine("public class " + className + " : " + type.FullName + ", IHaveConfiguration, IDynamicProxy");
+            code.AppendLine("public class " + className + " : " + interfaceType + ", IHaveConfiguration, IDynamicProxy");
             code.AppendLine("{");
-            code.AppendLine("   private readonly " + type.FullName + " _innerTarget;");
+            code.AppendLine("   private readonly " + interfaceType + " _innerTarget;");
             code.AppendLine("   private readonly BaseConfiguration _configuration;");
 
-            code.AppendLine("   public " + className + "(" + type.FullName + " innerTarget, BaseConfiguration configuration)");
+            code.AppendLine("   public " + className + "(" + interfaceType + " innerTarget, BaseConfiguration configuration)");
             code.AppendLine("   {");
             code.AppendLine("       _innerTarget = innerTarget;");
             code.AppendLine("       _configuration = configuration;");
@@ -92,7 +108,7 @@ namespace ForceField.Core.Generator
             code.AppendLine("");
             foreach (var publicMethod in publicMethods)
             {
-                code.AppendLine("   public " + (publicMethod.ReturnType.IsVoid() ? "void" : publicMethod.ReturnType.FullName) + " " + publicMethod.Name + "(" + string.Join(",", publicMethod.GetParameters().Select(x => x.ParameterType.FullName + " " + x.Name)) + ")");    // ReturnSignature(type, publicMethod) + " Invoked" + publicMethod.Name + "(" + string.Join(",", publicMethod.GetParameters().Select(x => x.ParameterType.FullName + " " + x.Name)) + ", " + type.FullName + " innerTarget)");
+                code.AppendLine("   public " + (publicMethod.ReturnType.IsVoid() ? "void" : publicMethod.ReturnType.GetFullName()) + " " + publicMethod.Name + "(" + string.Join(",", publicMethod.GetParameters().Select(x => x.ParameterType.GetFullName() + " " + x.Name)) + ")");    // ReturnSignature(type, publicMethod) + " Invoked" + publicMethod.Name + "(" + string.Join(",", publicMethod.GetParameters().Select(x => x.ParameterType.FullName + " " + x.Name)) + ", " + type.FullName + " innerTarget)");
                 code.AppendLine("   {");
                 code.AppendLine("       var parameters = " + publicMethod.GetUniqueMethodName() + "MethodInfo.GetParameters();");
                 code.AppendLine("       var arguments = new List<InvocationArgument>();");
